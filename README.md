@@ -192,9 +192,6 @@ plt.show()
 ## Final Output
 ![image](https://github.com/user-attachments/assets/be319460-bcc8-42d3-bbc7-497bad948a00)
 
-## Final Output
-![image](https://github.com/user-attachments/assets/be319460-bcc8-42d3-bbc7-497bad948a00)
-
 ## 1. Training and Validation Accuracy
 
 The left figure shows the trend of training and validation accuracy across different EfficientNet models as the number of epochs increases:
