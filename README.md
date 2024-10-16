@@ -15,7 +15,8 @@ This project demonstrates the process of downloading, preparing, and training va
 
 ### 1. Sets TPU in GCP
 
-![image](https://github.com/user-attachments/assets/b7b744f9-4e12-4a9c-9b5a-ee7989b4d2e3)
+![image](https://github.com/user-attachments/assets/d01ed265-f2fa-47dc-869d-a3f1eb957292)
+
 
 ### 2. Verifying TensorFlow Installation
 
