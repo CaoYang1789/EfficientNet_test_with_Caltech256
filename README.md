@@ -12,7 +12,12 @@ This project demonstrates the process of downloading, preparing, and training va
 
 ## Environment Setup
 
-### 1. Verifying TensorFlow Installation
+
+### 1. Sets TPU in GCP
+
+![image](https://github.com/user-attachments/assets/b7b744f9-4e12-4a9c-9b5a-ee7989b4d2e3)
+
+### 2. Verifying TensorFlow Installation
 
 Before proceeding, verify that TensorFlow is correctly installed in your environment.
 
@@ -22,7 +27,7 @@ python3 -c "import tensorflow as tf; print(tf.__version__)"
 
 The expected output should show the installed TensorFlow version (e.g., `2.12.0`).
 
-### 2. Installing Necessary Packages
+### 3. Installing Necessary Packages
 
 Ensure all necessary packages like `kaggle`, `tensorflow`, and `pandas` are installed. If not, install them using `pip`.
 
