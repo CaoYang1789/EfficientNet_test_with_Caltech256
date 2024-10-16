@@ -7,8 +7,8 @@ This project demonstrates the process of downloading, preparing, and training va
 2. [Download the Caltech256 Dataset](#download-the-caltech256-dataset)
 3. [Training EfficientNet Models](#training-efficientnet-models)
 4. [Saving and Visualizing Results](#saving-and-visualizing-results)
-5. [SSH and File Transfer Setup](#ssh-and-file-transfer-setup)
-6. [Final Output](#final-output)
+5. [Results Analysis](#final-output)
+
 
 ## Environment Setup
 
@@ -194,8 +194,8 @@ plt.tight_layout()
 plt.show()
 ```
 
-
-## Final Output
+## Result Analysis
+### Final Output
 ![image](https://github.com/user-attachments/assets/be319460-bcc8-42d3-bbc7-497bad948a00)
 
 ### 1. Training and Validation Accuracy
