@@ -221,9 +221,10 @@ cross_entropy = tf.losses.softmax_cross_entropy(
 loss = cross_entropy + FLAGS.weight_decay * tf.add_n(
     [tf.nn.l2_loss(v) for v in tf.trainable_variables()
      if 'batch_normalization' not in v.name])
+```
 
 The loss function calculation uses Softmax cross-entropy loss combined with L2 regularization. Now we will use these two to answer the question.
-```
+
 
 ### How Softmax Cross-Entropy Works:
 
