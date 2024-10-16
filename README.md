@@ -223,6 +223,7 @@ loss = cross_entropy + FLAGS.weight_decay * tf.add_n(
      if 'batch_normalization' not in v.name])
 
 The loss function calculation uses Softmax cross-entropy loss combined with L2 regularization. Now we will use these two to answer the question.
+```
 
 ### How Softmax Cross-Entropy Works:
 
