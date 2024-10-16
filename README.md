@@ -16,9 +16,9 @@ This project demonstrates the process of downloading, preparing, and training va
 
 Before proceeding, verify that TensorFlow is correctly installed in your environment.
 
-\```bash
+```bash
 python3 -c "import tensorflow as tf; print(tf.__version__)"
-\```
+```
 
 The expected output should show the installed TensorFlow version (e.g., `2.12.0`).
 
@@ -26,9 +26,9 @@ The expected output should show the installed TensorFlow version (e.g., `2.12.0`
 
 Ensure all necessary packages like `kaggle`, `tensorflow`, and `pandas` are installed. If not, install them using `pip`.
 
-\```bash
+```bash
 pip install tensorflow keras pandas kaggle
-\```
+```
 
 ## Download the Caltech256 Dataset
 
@@ -42,25 +42,25 @@ We will use the **Kaggle** API to download the **Caltech256** dataset.
 
 ### 2. Move the API Key to the Right Location
 
-\```bash
+```bash
 mkdir -p ~/.kaggle
 mv ~/path_to/kaggle.json ~/.kaggle/
 chmod 600 ~/.kaggle/kaggle.json
-\```
+```
 
 ### 3. Download the Dataset
 
 Run the following command to download the Caltech-256 dataset:
 
-\```bash
+```bash
 kaggle datasets download -d jessicali9530/caltech256
-\```
+```
 
 ### 4. Extract the Dataset
 
-\```bash
+```bash
 unzip caltech256.zip -d ./caltech256
-\```
+```
 
 ## Training EfficientNet Models
 
@@ -68,7 +68,7 @@ unzip caltech256.zip -d ./caltech256
 
 Below is the Python script used to train multiple EfficientNet models (B0, B1, B3, B5, B7) on the Caltech-256 dataset. The script loads the dataset, trains each model, and records the training and validation accuracy and loss for each epoch.
 
-\```python
+```python
 import tensorflow as tf
 from tensorflow.keras.applications import EfficientNetB0, EfficientNetB1, EfficientNetB3, EfficientNetB5, EfficientNetB7
 from tensorflow.keras import layers, models
@@ -137,7 +137,7 @@ if __name__ == "__main__":
     df = pd.DataFrame(results)
     df.to_csv("training_results.csv", index=False)
     print("Results saved to training_results.csv")
-\```
+```
 
 ## Saving and Visualizing Results
 
@@ -147,7 +147,7 @@ To visualize the results (accuracy, loss) across different EfficientNet models a
 
 Example:
 
-\```python
+```python
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -164,26 +164,26 @@ plt.show()
 sns.lineplot(data=df, x="epoch", y="val_accuracy", hue="model")
 plt.title("Validation Accuracy across EfficientNet Models")
 plt.show()
-\```
+```
 
 ## SSH and File Transfer Setup
 
 If you need to transfer files from your virtual machine to your local machine, follow the steps below:
 
 1. **Generate SSH keys** (if not done already):
-   \```bash
+   ```bash
    ssh-keygen -t ed25519 -C "your_email@example.com"
-   \```
+   ```
 
 2. **Copy the public key to your VM**:
-   \```bash
+   ```bash
    ssh-copy-id yc4535@your_vm_ip_address
-   \```
+   ```
 
 3. **Transfer files using scp**:
-   \```bash
+   ```bash
    scp -i ~/.ssh/id_ed25519 yc4535@your_vm_ip_address:/home/yc4535/test1/training_results.csv "C:/local_directory/"
-   \```
+   ```
 
 ## Final Output
 
