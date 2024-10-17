@@ -1,4 +1,4 @@
-# EfficientNet Training with Caltech256 Dataset
+# EfficientNet Training with Caltech256 Dataset 
 
 This project demonstrates the process of downloading, preparing, and training various versions of EfficientNet on the **Caltech256** dataset. The process involves setting up the environment, downloading the dataset, training multiple EfficientNet models, and recording their performance.
 
