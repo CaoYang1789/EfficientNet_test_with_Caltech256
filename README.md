@@ -7,7 +7,7 @@ This project demonstrates the process of downloading, preparing, and training va
 2. [Download the Caltech256 Dataset](#download-the-caltech256-dataset)
 3. [Training EfficientNet Models](#training-efficientnet-models)
 4. [Saving and Visualizing Results](#saving-and-visualizing-results)
-5. [Results Analysis](#Results-Analysis)
+5. [Results Analysis](#Results-Analysiss)
 
 
 ## Environment Setup
@@ -72,129 +72,17 @@ unzip caltech256.zip -d ./caltech256
 
 ### Python Script for Training
 
-Below is the Python script used to train multiple EfficientNet models (B0, B1, B3, B5, B7) on the Caltech-256 dataset. The script loads the dataset, trains each model, and records the training and validation accuracy and loss for each epoch.
-
-```python
-import tensorflow as tf
-from tensorflow.keras.applications import EfficientNetB0, EfficientNetB1, EfficientNetB3, EfficientNetB5, EfficientNetB7
-from tensorflow.keras import layers, models
-from tensorflow.keras.applications.efficientnet import preprocess_input
-import pandas as pd
-
-# Load and preprocess dataset
-def load_datasets():
-    train_dataset = tf.keras.preprocessing.image_dataset_from_directory(
-        '256_ObjectCategories',
-        label_mode='categorical',
-        image_size=(224, 224),
-        batch_size=32,
-        validation_split=0.2,
-        subset='training',
-        seed=123
-    )
-
-    val_dataset = tf.keras.preprocessing.image_dataset_from_directory(
-        '256_ObjectCategories',
-        label_mode='categorical',
-        image_size=(224, 224),
-        batch_size=32,
-        validation_split=0.2,
-        subset='validation',
-        seed=123
-    )
-
-    train_dataset = train_dataset.map(lambda x, y: (preprocess_input(x), y))
-    val_dataset = val_dataset.map(lambda x, y: (preprocess_input(x), y))
-
-    return train_dataset, val_dataset
-
-# Train multiple EfficientNet models and record results
-def train_multiple_models(models_list, model_names, train_dataset, val_dataset, epochs=5):
-    results = []
-    for model_class, model_name in zip(models_list, model_names):
-        model = model_class(weights=None, input_shape=(224, 224, 3), classes=257)
-        model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-        
-        history = model.fit(train_dataset, validation_data=val_dataset, epochs=epochs)
-        
-        # Record the accuracy and loss for each epoch
-        for epoch in range(epochs):
-            results.append({
-                'model': model_name,
-                'epoch': epoch + 1,
-                'accuracy': history.history['accuracy'][epoch],
-                'val_accuracy': history.history['val_accuracy'][epoch],
-                'loss': history.history['loss'][epoch],
-                'val_loss': history.history['val_loss'][epoch]
-            })
-    return results
-
-# Main
-if __name__ == "__main__":
-    model_classes = [EfficientNetB0, EfficientNetB1, EfficientNetB3, EfficientNetB5, EfficientNetB7]
-    model_names = ["EfficientNetB0", "EfficientNetB1", "EfficientNetB3", "EfficientNetB5", "EfficientNetB7"]
-
-    train_dataset, val_dataset = load_datasets()
-
-    # Train the models and collect the results
-    results = train_multiple_models(model_classes, model_names, train_dataset, val_dataset, epochs=5)
-
-    # Convert the results to a DataFrame and save to CSV
-    df = pd.DataFrame(results)
-    df.to_csv("training_results.csv", index=False)
-    print("Results saved to training_results.csv")
-```
+Using scripts, call efficientNet and train with datasets. Training.py is a Python script for training multiple EfficientNet models (B0, B1, B3, B5, B7) on the Caltech-256 dataset. The script loads the data set, trains each model, and records the training and validation accuracy and losses for each epoch.
 
 ## Saving and Visualizing Results
 
 All the training and validation results are saved in a CSV file named `training_results.csv`.
 
-To visualize the results (accuracy, loss) across different EfficientNet models and epochs, you can read the CSV and plot the data using Python libraries like `matplotlib` or `seaborn`.
+To visualize the results (accuracy, loss) across different EfficientNet models and epochs, you can read the CSV and plot the data using Python libraries like `matplotlib` or `seaborn`. Visualizing_example.py is an example based on matplotlib
 
-Example:
-```python
-import pandas as pd
-import matplotlib.pyplot as plt
-
-# Read the CSV file
-data = pd.read_csv('training_results.csv')
-
-# Get all the different model names
-models = data['Model'].unique()
-
-# Plot the figures
-plt.figure(figsize=(12, 5))
-
-# Plot the accuracy curves
-plt.subplot(1, 2, 1)
-for model in models:
-    model_data = data[data['Model'] == model]
-    plt.plot(model_data['Epoch'], model_data['Train Accuracy'], label=f'{model} - Train', marker='o')
-    plt.plot(model_data['Epoch'], model_data['Validation Accuracy'], label=f'{model} - Validation', marker='o')
-
-plt.title('Training and Validation Accuracy for Different Models')
-plt.xlabel('Epochs')
-plt.ylabel('Accuracy')
-plt.legend()
-
-# Plot the loss curves
-plt.subplot(1, 2, 2)
-for model in models:
-    model_data = data[data['Model'] == model]
-    plt.plot(model_data['Epoch'], model_data['Train Loss'], label=f'{model} - Train', marker='o')
-    plt.plot(model_data['Epoch'], model_data['Validation Loss'], label=f'{model} - Validation', marker='o')
-
-plt.title('Training and Validation Loss for Different Models')
-plt.xlabel('Epochs')
-plt.ylabel('Loss')
-plt.legend()
-
-# Adjust the layout and show the plot
-plt.tight_layout()
-plt.show()
-```
 
 ## Results Analysis
+
 ### Final Output
 ![image](https://github.com/user-attachments/assets/be319460-bcc8-42d3-bbc7-497bad948a00)
 
